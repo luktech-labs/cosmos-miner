@@ -1,0 +1,72 @@
+syntax = "proto3";
+package luktechlabs.cosmosminer.cosmosminer;
+
+import "cosmosminer/stored_miner.proto";
+// this line is used by starport scaffolding # proto/tx/import
+
+option go_package = "github.com/luktech-labs/cosmos-miner/x/cosmosminer/types";
+
+// Msg defines the Msg service.
+service Msg {
+      rpc CreateStoredMiner(MsgCreateStoredMiner) returns (MsgCreateStoredMinerResponse);
+  rpc UpdateStoredMiner(MsgUpdateStoredMiner) returns (MsgUpdateStoredMinerResponse);
+  rpc DeleteStoredMiner(MsgDeleteStoredMiner) returns (MsgDeleteStoredMinerResponse);
+  rpc CreateMinerTemplate(MsgCreateMinerTemplate) returns (MsgCreateMinerTemplateResponse);
+  rpc CreateMiner(MsgCreateMiner) returns (MsgCreateMinerResponse);
+  rpc Mine(MsgMine) returns (MsgMineResponse);
+// this line is used by starport scaffolding # proto/tx/rpc
+}
+
+message MsgCreateStoredMiner {
+  string creator = 1;
+  string index = 2;
+
+  uint64 lastClaimed = 3;
+}
+message MsgCreateStoredMinerResponse {}
+
+message MsgUpdateStoredMiner {
+  string creator = 1;
+  string index = 2;
+
+  uint64 lastClaimed = 3;
+}
+message MsgUpdateStoredMinerResponse {}
+
+message MsgDeleteStoredMiner {
+  string creator = 1;
+  string index = 2;
+}
+message MsgDeleteStoredMinerResponse {}
+
+message MsgCreateMinerTemplate {
+  string creator = 1;
+  string name = 2;
+  uint64 price = 3;
+  uint64 prodPerSecond = 4;
+  uint64 minClaimTime = 5;
+}
+
+message MsgCreateMinerTemplateResponse {
+  string minerTemplateIndex = 1;
+}
+
+message MsgCreateMiner {
+  string creator = 1;
+  uint64 minerTemplateID = 2;
+}
+
+message MsgCreateMinerResponse {
+  string minerIndex = 1;
+}
+
+message MsgMine {
+  string creator = 1;
+  uint64 minerID = 2;
+}
+
+message MsgMineResponse {
+  string amountMined = 1;
+}
+
+// this line is used by starport scaffolding # proto/tx/message

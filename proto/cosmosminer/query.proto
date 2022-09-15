@@ -1,0 +1,127 @@
+syntax = "proto3";
+package luktechlabs.cosmosminer.cosmosminer;
+
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "cosmosminer/params.proto";
+import "cosmosminer/miner_info.proto";
+import "cosmosminer/stored_miner_template.proto";
+import "cosmosminer/stored_miner.proto";
+import "cosmosminer/miner_balance.proto";
+// this line is used by starport scaffolding # 1
+
+option go_package = "github.com/luktech-labs/cosmos-miner/x/cosmosminer/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  // Parameters queries the parameters of the module.
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/luktech-labs/cosmos-miner/cosmosminer/params";
+  }
+  // Queries a MinerInfo by index.
+	rpc MinerInfo(QueryGetMinerInfoRequest) returns (QueryGetMinerInfoResponse) {
+		option (google.api.http).get = "/luktech-labs/cosmos-miner/cosmosminer/miner_info";
+	}
+// Queries a StoredMinerTemplate by index.
+	rpc StoredMinerTemplate(QueryGetStoredMinerTemplateRequest) returns (QueryGetStoredMinerTemplateResponse) {
+		option (google.api.http).get = "/luktech-labs/cosmos-miner/cosmosminer/stored_miner_template/{index}";
+	}
+
+	// Queries a list of StoredMinerTemplate items.
+	rpc StoredMinerTemplateAll(QueryAllStoredMinerTemplateRequest) returns (QueryAllStoredMinerTemplateResponse) {
+		option (google.api.http).get = "/luktech-labs/cosmos-miner/cosmosminer/stored_miner_template";
+	}
+
+// Queries a StoredMiner by index.
+	rpc StoredMiner(QueryGetStoredMinerRequest) returns (QueryGetStoredMinerResponse) {
+		option (google.api.http).get = "/luktech-labs/cosmos-miner/cosmosminer/stored_miner/{index}";
+	}
+
+	// Queries a list of StoredMiner items.
+	rpc StoredMinerAll(QueryAllStoredMinerRequest) returns (QueryAllStoredMinerResponse) {
+		option (google.api.http).get = "/luktech-labs/cosmos-miner/cosmosminer/stored_miner";
+	}
+
+// Queries a MinerBalance by index.
+	rpc MinerBalance(QueryGetMinerBalanceRequest) returns (QueryGetMinerBalanceResponse) {
+		option (google.api.http).get = "/luktech-labs/cosmos-miner/cosmosminer/miner_balance/{index}";
+	}
+
+	// Queries a list of MinerBalance items.
+	rpc MinerBalanceAll(QueryAllMinerBalanceRequest) returns (QueryAllMinerBalanceResponse) {
+		option (google.api.http).get = "/luktech-labs/cosmos-miner/cosmosminer/miner_balance";
+	}
+
+// this line is used by starport scaffolding # 2
+}
+
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetMinerInfoRequest {}
+
+message QueryGetMinerInfoResponse {
+	MinerInfo MinerInfo = 1 [(gogoproto.nullable) = false];
+}
+message QueryGetStoredMinerTemplateRequest {
+	  string index = 1;
+
+}
+
+message QueryGetStoredMinerTemplateResponse {
+	StoredMinerTemplate storedMinerTemplate = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllStoredMinerTemplateRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllStoredMinerTemplateResponse {
+	repeated StoredMinerTemplate storedMinerTemplate = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetStoredMinerRequest {
+	  string index = 1;
+
+}
+
+message QueryGetStoredMinerResponse {
+	StoredMiner storedMiner = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllStoredMinerRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllStoredMinerResponse {
+	repeated StoredMiner storedMiner = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetMinerBalanceRequest {
+	  string index = 1;
+
+}
+
+message QueryGetMinerBalanceResponse {
+	MinerBalance minerBalance = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllMinerBalanceRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllMinerBalanceResponse {
+	repeated MinerBalance minerBalance = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// this line is used by starport scaffolding # 3

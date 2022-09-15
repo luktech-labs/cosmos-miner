@@ -1,0 +1,22 @@
+syntax = "proto3";
+package luktechlabs.cosmosminer.cosmosminer;
+
+import "gogoproto/gogo.proto";
+import "cosmosminer/params.proto";
+import "cosmosminer/miner_info.proto";
+import "cosmosminer/stored_miner_template.proto";
+import "cosmosminer/stored_miner.proto";
+import "cosmosminer/miner_balance.proto";
+// this line is used by starport scaffolding # genesis/proto/import
+
+option go_package = "github.com/luktech-labs/cosmos-miner/x/cosmosminer/types";
+
+// GenesisState defines the cosmosminer module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+  MinerInfo minerInfo = 2 [(gogoproto.nullable) = false];
+  repeated StoredMinerTemplate storedMinerTemplateList = 3 [(gogoproto.nullable) = false];
+  repeated StoredMiner storedMinerList = 4 [(gogoproto.nullable) = false];
+  repeated MinerBalance minerBalanceList = 5 [(gogoproto.nullable) = false];
+  // this line is used by starport scaffolding # genesis/proto/state
+}

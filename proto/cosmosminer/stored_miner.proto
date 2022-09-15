@@ -1,0 +1,12 @@
+syntax = "proto3";
+package luktechlabs.cosmosminer.cosmosminer;
+
+option go_package = "github.com/luktech-labs/cosmos-miner/x/cosmosminer/types";
+
+message StoredMiner {
+  string index = 1; 
+  uint64 lastClaimed = 2; 
+  string creator = 3;
+  uint64 templateIndex = 4;
+}
+

@@ -1,0 +1,9 @@
+syntax = "proto3";
+package luktechlabs.cosmosminer.cosmosminer;
+
+option go_package = "github.com/luktech-labs/cosmos-miner/x/cosmosminer/types";
+
+message MinerInfo {
+  uint64 templateNextID = 1;
+  uint64 minerNextID = 2;
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+package luktechlabs.cosmosminer.cosmosminer;
+
+option go_package = "github.com/luktech-labs/cosmos-miner/x/cosmosminer/types";
+
+message StoredMinerTemplate {
+  string index = 1; 
+  string name = 2; 
+  uint64 price = 3; 
+  uint64 claimTime = 4; 
+  uint64 prodPerSecond = 5;
+}
+
